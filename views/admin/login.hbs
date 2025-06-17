@@ -1,0 +1,71 @@
+
+
+<link rel="stylesheet" href="/adminStyle.css">
+
+  
+
+<div class="login-container">
+    <h2 class="text-center mb-4">Admin Login</h2>
+
+    {{!-- {{#if error}}
+      <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+
+    {{#if success}}
+      <div class="alert alert-success">{{success}}</div>
+    {{/if}} --}}
+
+    <form action="/admin/login" method="POST">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="email" 
+          name="email" 
+     
+          placeholder="admin@example.com">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input 
+          type="password" 
+          class="form-control" 
+          id="password" 
+          name="password" 
+         
+          placeholder="Enter your password">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+  </div>
+
+   <div id="serverMessage" data-message="{{message}}" style="display: none;"></div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const messageDiv = document.getElementById("serverMessage");
+    const message = messageDiv ? messageDiv.getAttribute("data-message") : "";
+
+    if (message) {
+        swal(message);
+    }
+
+    const form = document.querySelector("form"); // Fix: Define the form
+    form.addEventListener('submit', function(e) {
+        var email = document.getElementById('email').value.trim();
+        var password = document.getElementById('password').value.trim();
+
+        if (email === "" || password === "" ) {
+            e.preventDefault(); // Prevent form only if fields are empty
+            swal("All fields are required");
+            return false;
+        } 
+    });
+});
+
+    
+
+
+</script>

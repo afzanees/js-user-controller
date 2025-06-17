@@ -1,0 +1,23 @@
+
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-header text-center">
+                <h2>Welcome, {{email}}!</h2>
+            </div>
+            <div class="card-body text-center">
+                <p>You are logged in as <strong>{{email}}</strong></p>
+                <a href="/user/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+
+     // Force reload if the page is loaded from bfcache (back/forward cache)
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+            window.location.reload();
+        }
+    });
+</script>

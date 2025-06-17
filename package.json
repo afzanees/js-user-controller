@@ -1,0 +1,23 @@
+{
+  "name": "projecttwo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "hbs": "^4.2.0",
+    "mongoose": "^8.15.0",
+    "nocache": "^4.0.0",
+    "nodemon": "^3.1.10",
+    "promise": "^8.3.0"
+  }
+}

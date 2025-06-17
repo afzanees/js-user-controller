@@ -1,0 +1,126 @@
+
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                        <h3>Register</h3>
+                    </div>
+                    <div class="card-body">
+                       
+                          
+                       
+                        
+                        <form action="/user/register" method="POST" id="registerForm">
+                            <!-- Hidden div just to store message -->
+                        <div id="serverMessage" data-message="{{message}}" style="display: none;"></div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input 
+                                    type="email" 
+                                    class="form-control" 
+                                    id="email" 
+                                    name="email" 
+                                    
+                                    placeholder="Enter your email"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    id="password" 
+                                    name="password" 
+                                     
+                                    placeholder="Enter your password"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label for="Confirm password" class="form-label">confirm Password</label>
+                                <input 
+                                    type="Password" 
+                                    class="form-control" 
+                                    id="confirmPassword" 
+                                    name="confirmPassword" 
+                                    
+                                    placeholder="Confirm your password"
+                                >
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Register</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <small>Don't have an account? <a href="/register">Register</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('registerForm');
+    const messageElement = document.getElementById('serverMessage');
+    const message = messageElement ? messageElement.getAttribute('data-message') : "";
+
+    if (message) {
+        swal(message);
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();  // Prevent form from submitting until checks are done
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+        // Email empty check
+        if (email === "") {
+            swal("Email is required");
+            return false;
+        }
+
+        // Email format check (optional)
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            swal("Please enter a valid email address");
+            return false;
+        }
+
+        // Password empty check
+        if (password === "") {
+            swal("Password is required");
+            return false;
+        }
+
+        // Password length check (optional)
+        if (password.length < 6) {
+            swal("Password must be at least 6 characters");
+            return false;
+        }
+
+        // Confirm password check
+        if (confirmPassword === "") {
+            swal("Please confirm your password");
+            return false;
+        }
+
+        // Passwords match check
+        if (password !== confirmPassword) {
+            swal("Passwords do not match");
+            return false;
+        }
+
+        // ✅ All validations passed — now submit the form
+        form.submit();
+    });
+});
+</script>
+
+

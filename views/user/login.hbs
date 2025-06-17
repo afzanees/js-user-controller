@@ -1,0 +1,107 @@
+
+<link rel="stylesheet" href="/public/style.css">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                        <h3>Login</h3>
+                    </div>
+                    <div class="card-body">
+                       
+                          
+                       
+                        <form action="/user/login" method="POST">
+                          <div id="serverMessage" data-message="{{message}}" style="display: none;"></div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input 
+                                    type="email" 
+                                    class="form-control" 
+                                    id="email" 
+                                    name="email" 
+                                    
+                                    placeholder="Enter your email"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    id="password" 
+                                    name="password" 
+                                    
+                                    placeholder="Enter your password"
+                                >
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <small>Don't have an account? <a href="/user/register">Register</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <div id="serverMessage" data-message="{{message}}" style="display: none;"></div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const messageDiv = document.getElementById("serverMessage");
+  const message = messageDiv ? messageDiv.getAttribute("data-message") : "";
+
+  if (message) {
+    swal(message);
+  }
+
+  const form = document.querySelector("form");
+
+  form.addEventListener('submit', function (e) {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    // Validate email
+    if (email === "") {
+      e.preventDefault();
+      swal("Email is required");
+      return false;
+    }
+
+    // Optional: check valid email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      e.preventDefault();
+      swal("Please enter a valid email");
+      return false;
+    }
+
+    // Validate password
+    if (password === "") {
+      e.preventDefault();
+      swal("Password is required");
+      return false;
+    }
+
+    // Optional: password length
+    if (password.length < 6) {
+      e.preventDefault();
+      swal("Password must be at least 6 characters long");
+      return false;
+    }
+
+    // ✅ If all fields are valid, allow form to submit
+  });
+});
+
+    
+
+
+</script>
+
+
+   
